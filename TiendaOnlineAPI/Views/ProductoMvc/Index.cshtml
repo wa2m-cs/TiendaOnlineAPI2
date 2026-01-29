@@ -1,0 +1,36 @@
+﻿@model IEnumerable<TiendaOnlineAPI.Models.Producto>
+
+<h2>Listado de Productos</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Agregar Producto</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Categoría</th>
+            <th>Imagen</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nombre</td>
+                <td>@item.Descripcion</td>
+                <td>@item.Precio</td>
+                <td>@item.Categoria?.Nombre</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.UrlImagen))
+                    {
+                        <img src="@item.UrlImagen" alt="@item.Nombre" width="100" />
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
