@@ -2,9 +2,12 @@
 
 <h2>Listado de Productos</h2>
 
-<p>
+
+
+<div class="action-links">
     <a asp-action="Create" class="btn btn-primary">Agregar Producto</a>
-</p>
+</div>
+<link rel="stylesheet" href="~/css/Index.css" asp-append-version="true" />
 
 <table class="table table-striped">
     <thead>
@@ -14,6 +17,7 @@
             <th>Precio</th>
             <th>Categoría</th>
             <th>Imagen</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -30,6 +34,7 @@
                         <img src="@item.UrlImagen" alt="@item.Nombre" width="100" />
                     }
                 </td>
+                <td><a asp-controller="ProductoMvc" asp-action="Edit" asp-route-id="@item.ProductoId" class="btn btn-warning">Editar</a></td>
             </tr>
         }
     </tbody>

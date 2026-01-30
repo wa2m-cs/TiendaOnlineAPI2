@@ -2,12 +2,15 @@
 
 <link rel="stylesheet" href="~/css/Forms.css" asp-append-version="true" />
 
-<h2>Agregar Producto</h2>
+<h2>Editar Producto</h2>
+<div class="form-idea">
+<form asp-action="Edit" asp-route-id="@Model.ProductoId" method="post">
 
-<form asp-action="Create" method="post">
     @Html.AntiForgeryToken()
 
-    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" asp-for="ProductoId" />
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <div class="form-group">
         <label asp-for="Nombre"></label>
@@ -17,7 +20,7 @@
 
     <div class="form-group">
         <label asp-for="Descripcion"></label>
-        <input asp-for="Descripcion" class="form-control" />
+        <textarea asp-for="Descripcion" class="form-control"></textarea>
         <span asp-validation-for="Descripcion" class="text-danger"></span>
     </div>
 
@@ -38,10 +41,12 @@
         <input asp-for="CategoriaId" class="form-control" type="number" />
         <span asp-validation-for="CategoriaId" class="text-danger"></span>
     </div>
-
-    <button type="submit" class="btn btn-success mt-2">Guardar</button>
+ 
+    <button type="submit" class="btn btn-success mt-2">Guardar cambios</button>
+    <a asp-action="Index" class="btn btn-secondary mt-2">Cancelar</a>
 </form>
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+<form asp-controller="ProductoMvc" asp-action="Delete" asp-route-id="@Model.ProductoId" method="post" style="display:inline;">
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-danger mt-2">Eliminar</button>
+</form>
+</div>
